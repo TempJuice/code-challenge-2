@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var joke = require('./routes/jokes');
 
 // serve back static files
 app.use(express.static('server/public'));
@@ -40,19 +41,21 @@ var jokes = [
   }
 ];
 
-//Post Route
-app.post('/joke', function (req,res) {
-  if( req.body.whoseJoke === '' || req.body.jokeQuestion === '' || req.body.punchLine === '' ){
-      res.sendStatus( 400 )
-  } else {
-  jokes.push(req.body);
-  res.sendStatus(201);
-  };			
-})
+app.use('/joke', joke);
 
-app.get('/joke', function (req,res) { 
-	res.send(jokes); 
-})
+// //Post Route
+// app.post('/joke', function (req,res) {
+//   if( req.body.whoseJoke === '' || req.body.jokeQuestion === '' || req.body.punchLine === '' ){
+//       res.sendStatus( 400 )
+//   } else {
+//   jokes.push(req.body);
+//   res.sendStatus(201);
+//   };			
+// })
+
+// app.get('/joke', function (req,res) { 
+// 	res.send(jokes); 
+// })
 
 // spinning up the server
 app.listen(port, function () {
