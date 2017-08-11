@@ -14,20 +14,6 @@ var port = 5000;
 
 app.use('/joke', joke);
 
-// //Post Route
-// app.post('/joke', function (req,res) {
-//   if( req.body.whoseJoke === '' || req.body.jokeQuestion === '' || req.body.punchLine === '' ){
-//       res.sendStatus( 400 )
-//   } else {
-//   jokes.push(req.body);
-//   res.sendStatus(201);
-//   };			
-// })
-
-// app.get('/joke', function (req,res) { 
-// 	res.send(jokes); 
-// })
-
 // spinning up the server
 app.listen(port, function () {
   console.log('server up on port: ', port);

@@ -2,9 +2,7 @@
 
 
 $(document).ready(function () {
-  //console.log('JQ');
   $('#addJokeButton').on('click', function () {
-    console.log('addJokeButton on click');
     var who = $('#whoseJokeIn').val();
     var question = $('#questionIn').val();
     var punchLine = $('#punchlineIn').val();
