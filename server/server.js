@@ -9,6 +9,7 @@ app.use(express.static('server/public'));
 
 // Parse post request (data becomes req.body)
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
 var port = 5000;
 

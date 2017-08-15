@@ -4,6 +4,7 @@ var pool = require('../modules/pool');
 
 router.post('/', function (req,res) {
   console.log('joke post was hit!');
+  console.log(req.body);
 	// Add an INSERT query
 	pool.connect(function(errorConnectingToDatabase, client, done){
 		if(errorConnectingToDatabase) {
@@ -12,7 +13,7 @@ router.post('/', function (req,res) {
 			res.sendStatus(500);
 		} else {
 			// when connecting to database worked!
-			client.query('INSERT INTO jokesarray ("whoseJoke", "jokeQuestion", "punchLine") VALUES ($1, $2, $3);', [req.body.whoseJoke, req.body.jokeQuestion, req.body.punchLine], function(errorMakingQuery, result) {
+			client.query('INSERT INTO jokes (whose_joke, joke_question, punchline) VALUES ($1, $2, $3);', [req.body.whoseJoke, req.body.jokeQuestion, req.body.punchLine], function(errorMakingQuery, result) {
 				done();
 				if(errorMakingQuery) {
 					console.log('Error making database query', errorMakingQuery);
@@ -34,7 +35,7 @@ router.get('/', function (req,res) {
 			res.sendStatus(500);
 		} else {
 			// when connecting to database worked!
-			client.query('SELECT * FROM jokesarray;', function(errorMakingQuery, result) {
+			client.query('SELECT * FROM jokes;', function(errorMakingQuery, result) {
 				done();
 				if(errorMakingQuery) {
 					console.log('Error making database query', errorMakingQuery);
